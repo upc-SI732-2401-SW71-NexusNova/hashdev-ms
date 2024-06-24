@@ -20,6 +20,6 @@ namespace UserManagerService.Models
 
         public string Github { get; set; }
         [Required]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

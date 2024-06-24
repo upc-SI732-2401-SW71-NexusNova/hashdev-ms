@@ -12,10 +12,12 @@ namespace UserManagerService.Data.Repositories
         }
         public Profile CreateProfile(Profile profile)
         {
-            if (profile == null)
+            var user = _context.Users.FirstOrDefault(u => u.Id == profile.UserId);
+            if (user == null)
             {
-                throw new ArgumentNullException(nameof(profile));
+                throw new ArgumentNullException(nameof(user));
             }
+            Console.WriteLine("User found");
             _context.Profiles.Add(profile);
             return profile;
         }
@@ -26,6 +28,7 @@ namespace UserManagerService.Data.Repositories
             {
                 throw new ArgumentNullException(nameof(profile));
             }
+            Console.WriteLine("Profile Deleted");
             _context.Profiles.Remove(profile);
         }
 
@@ -51,6 +54,11 @@ namespace UserManagerService.Data.Repositories
 
         public void UpdateProfile(int id, Profile profile)
         {
+            var user = _context.Users.FirstOrDefault(u => u.Id == profile.UserId);
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
             if (profile == null)
             {
                 throw new ArgumentNullException(nameof(profile));
@@ -67,6 +75,8 @@ namespace UserManagerService.Data.Repositories
             profileToUpdate.Website = profile.Website;
             profileToUpdate.Github = profile.Github;
             profileToUpdate.UserId = profile.UserId;
+
+            Console.WriteLine("Profile Updated");
         }
     }
 }

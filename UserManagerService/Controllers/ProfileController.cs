@@ -27,7 +27,7 @@ namespace UserManagerService.Controllers
             return Ok(_mapper.Map<IEnumerable<ProfileReadDto>>(profiles));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetProfileById")]
         public ActionResult<ProfileReadDto> GetProfileById(int id)
         {
             Console.WriteLine($"--> Getting profile by id: {id}");
@@ -40,7 +40,7 @@ namespace UserManagerService.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ProfileReadDto> CreateProfile(ProfileCreateDto profileCreateDto)
+        public ActionResult<ProfileReadDto> CreateProfile([FromBody] ProfileCreateDto profileCreateDto)
         {
             Console.WriteLine("--> Creating profile...");
             var profileModel = _mapper.Map<Models.Profile>(profileCreateDto);
@@ -48,11 +48,12 @@ namespace UserManagerService.Controllers
             _repository.SaveChanges();
 
             var profileReadDto = _mapper.Map<ProfileReadDto>(profileModel);
-            return CreatedAtRoute(nameof(GetProfileById), new { id = profileReadDto.Id }, profileReadDto);
+
+            return CreatedAtRoute("GetProfileById", new { id = profileReadDto.Id }, profileReadDto);
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateProfile(int id, ProfileCreateDto profileCreateDto)
+        public ActionResult UpdateProfile(int id, [FromBody] ProfileCreateDto profileCreateDto)
         {
             Console.WriteLine($"--> Updating profile with id: {id}");
             var profileModel = _repository.GetProfileById(id);

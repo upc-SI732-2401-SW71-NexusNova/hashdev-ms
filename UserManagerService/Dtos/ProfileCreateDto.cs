@@ -8,6 +8,6 @@
         public string Location { get; set; }
         public string Website { get; set; }
         public string Github { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

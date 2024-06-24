@@ -112,7 +112,7 @@ namespace UserManagerService.Data
                         Location = "New York, USA",
                         Website = "https://johndoe.com",
                         Github = "https://github.com/johndoe",
-                        UserId = "1"
+                        UserId = 1
                     },
                     new Profile
                     {
@@ -123,7 +123,7 @@ namespace UserManagerService.Data
                         Location = "San Francisco, USA",
                         Website = "https://mariapark.com",
                         Github = "https://github.com/mariapark",
-                        UserId = "2"
+                        UserId = 2
                     },
                     new Profile
                     {
@@ -134,7 +134,7 @@ namespace UserManagerService.Data
                         Location = "Chicago, USA",
                         Website = "https://michaelsmith.com",
                         Github = "https://github.com/michaelsmith",
-                        UserId = "3"
+                        UserId = 3
                     },
                     new Profile
                     {
@@ -145,7 +145,7 @@ namespace UserManagerService.Data
                         Location = "Los Angeles, USA",
                         Website = "https://emilyjohnson.com",
                         Github = "https://github.com/emilyjohnson",
-                        UserId = "4"
+                        UserId = 4
                     },
                     new Profile
                     {
@@ -156,7 +156,7 @@ namespace UserManagerService.Data
                         Location = "Seattle, USA",
                         Website = "https://davidbrown.com",
                         Github = "https://github.com/davidbrown",
-                        UserId = "5"
+                        UserId = 5
                     },
                     new Profile
                     {
@@ -167,7 +167,7 @@ namespace UserManagerService.Data
                         Location = "Austin, USA",
                         Website = "https://sophiawilson.com",
                         Github = "https://github.com/sophiawilson",
-                        UserId = "6"
+                        UserId = 6
                     },
                     new Profile
                     {
@@ -178,7 +178,7 @@ namespace UserManagerService.Data
                         Location = "Boston, USA",
                         Website = "https://danieltaylor.com",
                         Github = "https://github.com/danieltaylor",
-                        UserId = "7"
+                        UserId = 7
                     },
                     new Profile
                     {
@@ -189,7 +189,7 @@ namespace UserManagerService.Data
                         Location = "Denver, USA",
                         Website = "https://oliviaanderson.com",
                         Github = "https://github.com/oliviaanderson",
-                        UserId = "8"
+                        UserId = 8
                     },
                     new Profile
                     {
@@ -200,7 +200,7 @@ namespace UserManagerService.Data
                         Location = "Houston, USA",
                         Website = "https://jamesmartinez.com",
                         Github = "https://github.com/jamesmartinez",
-                        UserId = "9"
+                        UserId = 9
                     },
                     new Profile
                     {
@@ -211,7 +211,7 @@ namespace UserManagerService.Data
                         Location = "Miami, USA",
                         Website = "https://emmathompson.com",
                         Github = "https://github.com/emmathompson",
-                        UserId = "10"
+                        UserId = 10
                     }
                 );
                 context.SaveChanges();
