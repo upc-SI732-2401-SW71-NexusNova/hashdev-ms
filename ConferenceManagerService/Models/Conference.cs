@@ -8,18 +8,20 @@ namespace ConferenceManagerService.Models
         [Required]
         public int Id { get; set; }
         [Required]
-        public int AuthorId { get; set; }
+        public string Name { get; set; }
         [Required]
-        public string Title { get; set; }
+        public string Image { get; set; }
         [Required]
-        public string Content { get; set; }
+        public string Description { get; set; }
         [Required]
-        public DateTime DateConference { get; set; }
+        public string Price { get; set; }
+        [Required]
+        public string Date { get; set; }
+        [Required]
+        public string Time { get; set; }
         [Required]
         public string Location { get; set; }
         [Required]
-        public int NumberTickets { get; set; }
-        [Required]
-        public float Price { get; set; }
+        public int UserId { get; set; }
     }
 }

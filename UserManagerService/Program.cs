@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using System;
 using UserManagerService.Data;
 using UserManagerService.Data.Repositories;
 using UserManagerService.Mapping;
@@ -22,6 +20,7 @@ builder.Services.AddDbContext<UserManagerDbContext>(opt =>
     opt.UseInMemoryDatabase("InMem"));
 
 // Repositories
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Cors
@@ -34,6 +33,7 @@ builder.Services.AddCors(options =>
 });
 
 // Mapping
+builder.Services.AddAutoMapper(typeof(ProfileMapper));
 builder.Services.AddAutoMapper(typeof(UserMapper));
 
 var app = builder.Build();

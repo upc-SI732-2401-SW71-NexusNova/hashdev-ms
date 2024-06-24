@@ -10,10 +10,12 @@ namespace UserManagerService.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Profile>().ToTable("Profiles");
         }
     }
 }

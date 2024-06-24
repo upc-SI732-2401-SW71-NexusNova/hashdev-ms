@@ -1,10 +1,9 @@
-﻿using AutoMapper;
-using UserManagerService.Dtos;
+﻿using UserManagerService.Dtos;
 using UserManagerService.Models;
 
 namespace UserManagerService.Mapping
 {
-    public class UserMapper : Profile
+    public class UserMapper : AutoMapper.Profile
     {
         public UserMapper()
         {

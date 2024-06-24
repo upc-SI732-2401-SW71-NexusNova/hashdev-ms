@@ -79,6 +79,7 @@ namespace UserManagerService.Data.Repositories
             {
                 throw new ArgumentNullException(nameof(userToUpdate));
             }
+            userToUpdate.Username = user.Username;
             userToUpdate.Email = user.Email;
             userToUpdate.Password = user.Password;
         }

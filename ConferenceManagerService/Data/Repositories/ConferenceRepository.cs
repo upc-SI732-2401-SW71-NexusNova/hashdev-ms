@@ -57,13 +57,14 @@ namespace ConferenceManagerService.Data.Repositories
             var existingConference = _context.Conferences.FirstOrDefault(p => p.Id == id);
             if (existingConference != null)
             {
-                existingConference.AuthorId = conference.AuthorId;
-                existingConference.Title = conference.Title;
-                existingConference.Content = conference.Content;
-                existingConference.DateConference = conference.DateConference;
-                existingConference.Location = conference.Location;
-                existingConference.NumberTickets = conference.NumberTickets;
+                existingConference.Name = conference.Name;
+                existingConference.Image = conference.Image;
+                existingConference.Description = conference.Description;
                 existingConference.Price = conference.Price;
+                existingConference.Date = conference.Date;
+                existingConference.Time = conference.Time;
+                existingConference.Location = conference.Location;
+                existingConference.UserId = conference.UserId;
             }
         }
     }
