@@ -20,13 +20,8 @@ builder.Services.AddDbContext<ConferenceManagerDbContext>(opt =>
 
 builder.Services.AddScoped<IConferenceRepository, ConferenceRepository>();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("CorsPolicy", builder =>
-    {
-        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-    });
-});
+// Cors
+builder.Services.AddCors();
 
 builder.Services.AddAutoMapper(typeof(ConferenceMapper));
 
@@ -45,7 +40,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors("AllowAllOrigins");
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 PrepDb.PrepPopulation(app);
 

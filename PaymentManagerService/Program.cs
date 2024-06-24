@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using UserManagerService.Data;
-using UserManagerService.Data.Repositories;
-using UserManagerService.Mapping;
+using PaymentManagerService.Data;
+using PaymentManagerService.Data.Repositories;
+using PaymentManagerService.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,23 +12,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new() { Title = "UserManagerService", Version = "v1" });
+    c.SwaggerDoc("v1", new() { Title = "PaymentManagerService", Version = "v1" });
 });
 
-// Database
-builder.Services.AddDbContext<UserManagerDbContext>(opt =>
+builder.Services.AddDbContext<PaymentManagerDbContext>(opt =>
     opt.UseInMemoryDatabase("InMem"));
 
-// Repositories
-builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
-// Cors
 builder.Services.AddCors();
 
-// Mapping
-builder.Services.AddAutoMapper(typeof(ProfileMapper));
-builder.Services.AddAutoMapper(typeof(UserMapper));
+builder.Services.AddAutoMapper(typeof(PaymentMapper));
 
 var app = builder.Build();
 
