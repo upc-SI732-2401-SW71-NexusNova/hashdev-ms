@@ -9,7 +9,6 @@ namespace PaymentManagerService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [EnableCors("AllowAllOrigins")]
     public class PaymentController : ControllerBase
     {
         private readonly IMapper _mapper;

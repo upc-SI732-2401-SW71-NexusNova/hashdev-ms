@@ -7,9 +7,8 @@ using UserManagerService.Models;
 
 namespace UserManagerService.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
-    [EnableCors("AllowOrigin")]
+    [Route("[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;

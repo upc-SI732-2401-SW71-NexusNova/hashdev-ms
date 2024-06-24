@@ -9,7 +9,6 @@ namespace ConferenceManagerService.Controllers
 {
     [ApiController]
     [Route("conferences")]
-    [EnableCors("AllowOrigin")]
     public class ConferenceController : ControllerBase
     {
         private readonly IConferenceRepository _repository;

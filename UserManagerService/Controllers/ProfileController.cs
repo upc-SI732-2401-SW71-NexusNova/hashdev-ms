@@ -7,7 +7,6 @@ namespace UserManagerService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [EnableCors("AllowOrigin")]
     public class ProfileController : ControllerBase
     {
         private readonly AutoMapper.IMapper _mapper;
