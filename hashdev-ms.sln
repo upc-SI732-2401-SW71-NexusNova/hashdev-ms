@@ -9,9 +9,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeedManagerService", "FeedM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceManagerService", "ConferenceManagerService\ConferenceManagerService.csproj", "{09C7F18B-7AAF-463D-BCCC-DD54490A58B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentManagerService", "PaymentManagerService\PaymentManagerService.csproj", "{6E4E8D5F-2A4A-4DCD-AFD9-E77398827B4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentManagerService", "PaymentManagerService\PaymentManagerService.csproj", "{6E4E8D5F-2A4A-4DCD-AFD9-E77398827B4F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{25394BE3-CA13-4C8F-B010-7C3B3FB704E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{72DFFC59-C0FE-4FFB-8672-46EFCE2C1952}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApigatewayWithOcelot", "ApigatewayWithOcelot\ApigatewayWithOcelot.csproj", "{291398F3-A46B-4040-B16A-84BA27A18ED6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApigatewayWithYarp", "ApigatewayWithYarp\ApigatewayWithYarp.csproj", "{D099BBAF-2698-48EC-BCCC-52DEA68F608C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7F2523A6-3FCB-49D8-80BF-F39D31581EFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{2C2EB3CB-6074-468D-91CB-C83B0391BA1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoadBalancer", "LoadBalancer", "{E3088FA2-7CBC-4812-9F13-B81FB44BFD78}"
+	ProjectSection(SolutionItems) = preProject
+		LoadBalancer\Dockerfile = LoadBalancer\Dockerfile
+		LoadBalancer\Dockerfile.original = LoadBalancer\Dockerfile.original
+		LoadBalancer\nginx.conf = LoadBalancer\nginx.conf
+		LoadBalancer\proxy.conf = LoadBalancer\proxy.conf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +53,18 @@ Global
 		{6E4E8D5F-2A4A-4DCD-AFD9-E77398827B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E4E8D5F-2A4A-4DCD-AFD9-E77398827B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E4E8D5F-2A4A-4DCD-AFD9-E77398827B4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{291398F3-A46B-4040-B16A-84BA27A18ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{291398F3-A46B-4040-B16A-84BA27A18ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{291398F3-A46B-4040-B16A-84BA27A18ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{291398F3-A46B-4040-B16A-84BA27A18ED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D099BBAF-2698-48EC-BCCC-52DEA68F608C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D099BBAF-2698-48EC-BCCC-52DEA68F608C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D099BBAF-2698-48EC-BCCC-52DEA68F608C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D099BBAF-2698-48EC-BCCC-52DEA68F608C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F2523A6-3FCB-49D8-80BF-F39D31581EFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F2523A6-3FCB-49D8-80BF-F39D31581EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F2523A6-3FCB-49D8-80BF-F39D31581EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F2523A6-3FCB-49D8-80BF-F39D31581EFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +74,9 @@ Global
 		{2187C545-3E2D-4354-BB86-068F05AAEF60} = {25394BE3-CA13-4C8F-B010-7C3B3FB704E1}
 		{09C7F18B-7AAF-463D-BCCC-DD54490A58B7} = {25394BE3-CA13-4C8F-B010-7C3B3FB704E1}
 		{6E4E8D5F-2A4A-4DCD-AFD9-E77398827B4F} = {25394BE3-CA13-4C8F-B010-7C3B3FB704E1}
+		{291398F3-A46B-4040-B16A-84BA27A18ED6} = {72DFFC59-C0FE-4FFB-8672-46EFCE2C1952}
+		{D099BBAF-2698-48EC-BCCC-52DEA68F608C} = {72DFFC59-C0FE-4FFB-8672-46EFCE2C1952}
+		{7F2523A6-3FCB-49D8-80BF-F39D31581EFD} = {2C2EB3CB-6074-468D-91CB-C83B0391BA1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7AEBC541-BF59-47F8-A528-713B87B5EE9A}

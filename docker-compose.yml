@@ -1,0 +1,48 @@
+version: '3.4'
+
+services:
+  loadbalancer:
+    image: ${DOCKER_REGISTRY-}loadbalancer
+    build:
+      context: LoadBalancer
+      dockerfile: Dockerfile
+
+  apigatewaywithocelot:
+    image: ${DOCKER_REGISTRY-}apigatewaywithocelot
+    build:
+      context: .
+      dockerfile: ApigatewayWithOcelot/Dockerfile
+
+  apigatewaywithyarp:
+    image: ${DOCKER_REGISTRY-}apigatewaywithyarp
+    build:
+      context: .
+      dockerfile: ApigatewayWithYarp/Dockerfile
+
+
+  conferencemanagerservice:
+    image: ${DOCKER_REGISTRY-}conferencemanagerservice
+    build:
+      context: .
+      dockerfile: ConferenceManagerService/Dockerfile
+
+
+  feedmanagerservice:
+    image: ${DOCKER_REGISTRY-}feedmanagerservice
+    build:
+      context: .
+      dockerfile: FeedManagerService/Dockerfile
+
+
+  paymentmanagerservice:
+    image: ${DOCKER_REGISTRY-}paymentmanagerservice
+    build:
+      context: .
+      dockerfile: PaymentManagerService/Dockerfile
+
+
+  usermanagerservice:
+    image: ${DOCKER_REGISTRY-}usermanagerservice
+    build:
+      context: .
+      dockerfile: UserManagerService/Dockerfile

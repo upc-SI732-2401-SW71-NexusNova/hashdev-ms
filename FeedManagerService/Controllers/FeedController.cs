@@ -4,16 +4,16 @@ namespace FeedManagerService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class FeedController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<FeedController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public FeedController(ILogger<FeedController> logger)
         {
             _logger = logger;
         }

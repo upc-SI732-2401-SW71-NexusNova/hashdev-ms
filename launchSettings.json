@@ -1,0 +1,17 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "apigatewaywithocelot": "StartDebugging",
+        "apigatewaywithyarp": "StartDebugging",
+        "conferencemanagerservice": "StartDebugging",
+        "feedmanagerservice": "StartDebugging",
+        "paymentmanagerservice": "StartDebugging",
+        "usermanagerservice": "StartDebugging",
+        "loadbalancer": "StartDebugging"
+      }
+    }
+  }
+}
