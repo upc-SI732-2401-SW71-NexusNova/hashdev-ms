@@ -1,0 +1,51 @@
+on:
+  push:
+    branches:
+    - deploy
+env:
+  DOTNET_CORE_VERSION: 7.0.x
+  CONTAINER_APP_ENVIRONMENT_NAME: managedEnv2024
+  RESOURCE_GROUP: managedEnv20240625001418ResourceGroup
+  CONTAINER_REGISTRY_NAME: registry20240625002039
+  CONTAINER_REGISTRY_LOGIN_SERVER: registry20240625002039.azurecr.io
+jobs:
+  BuildAndDeployContainerApp:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+        - appsourcepath: ApigatewayWithOcelot
+          containerappname: apigatewaywithocelot-container-app
+        - appsourcepath: ApigatewayWithYarp
+          containerappname: apigatewaywithyarp-container-app
+        - appsourcepath: ConferenceManagerService
+          containerappname: conferencemanagerservice-container-app
+        - appsourcepath: FeedManagerService
+          containerappname: feedmanagerservice-container-app
+        - appsourcepath: PaymentManagerService
+          containerappname: paymentmanagerservice-container-app
+        - appsourcepath: UserManagerService
+          containerappname: usermanagerservice-container-app
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.managedEnv2024_SPN }}
+    - name: Container App deploy
+      uses: azure/container-apps-deploy-action@v1
+      with:
+        appSourcePath: ${{ github.workspace }}/${{ matrix.appsourcepath }}
+        acrName: ${{ env.CONTAINER_REGISTRY_NAME }}
+        acrUsername: ${{ secrets.registry20240625002039_USERNAME_630A }}
+        acrPassword: ${{ secrets.registry20240625002039_PASSWORD_630A }}
+        imageToBuild: ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }}/${{ matrix.containerappname }}:${{ github.sha }}
+        containerAppName: ${{ matrix.containerappname }}
+        containerAppEnvironment: ${{ env.CONTAINER_APP_ENVIRONMENT_NAME }}
+        resourceGroup: ${{ env.RESOURCE_GROUP }}
