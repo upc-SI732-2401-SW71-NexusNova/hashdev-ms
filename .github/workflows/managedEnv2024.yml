@@ -10,24 +10,24 @@ env:
   CONTAINER_REGISTRY_LOGIN_SERVER: registry20240625002039.azurecr.io
 
 jobs:
-  BuildAndDeployContainerApp:
+  DeployContainerApp:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
       matrix:
         include:
           - containerappname: apigatewaywithocelot-container-app
-            dockerhub_image: jackdelaguilavilla03/apigatewaywithocelot
+            dockerhub_image: jackdelaguilavilla03/apigatewaywithocelot:latest
           - containerappname: apigatewaywithyarp-container-app
-            dockerhub_image: jackdelaguilavilla03/apigatewaywithyarp
+            dockerhub_image: jackdelaguilavilla03/apigatewaywithyarp:latest
           - containerappname: conferencemanagerservice-container-app
-            dockerhub_image: jackdelaguilavilla03/conferencemanagerservice
+            dockerhub_image: jackdelaguilavilla03/conferencemanagerservice:latest
           - containerappname: feedmanagerservice-container-app
-            dockerhub_image: jackdelaguilavilla03/feedmanagerservice
+            dockerhub_image: jackdelaguilavilla03/feedmanagerservice:latest
           - containerappname: paymentmanagerservice-container-app
-            dockerhub_image: jackdelaguilavilla03/paymentmanagerservice
+            dockerhub_image: jackdelaguilavilla03/paymentmanagerservice:latest
           - containerappname: usermanagerservice-container-app
-            dockerhub_image: jackdelaguilavilla03/usermanagerservice
+            dockerhub_image: jackdelaguilavilla03/usermanagerservice:latest
 
     steps:
       - name: Azure login
@@ -38,10 +38,10 @@ jobs:
       - name: Deploy Container App
         uses: azure/container-apps-deploy-action@v1
         with:
-          imageToBuild: ${{ matrix.dockerhub_image }}
-          containerAppName: ${{ matrix.containerappname }}
-          containerAppEnvironment: ${{ env.CONTAINER_APP_ENVIRONMENT_NAME }}
-          resourceGroup: ${{ env.RESOURCE_GROUP }}
           acrName: ${{ env.CONTAINER_REGISTRY_NAME }}
           acrUsername: ${{ secrets.registry20240625002039_USERNAME_630A }}
           acrPassword: ${{ secrets.registry20240625002039_PASSWORD_630A }}
+          imageToDeploy: ${{ matrix.dockerhub_image }}
+          containerAppName: ${{ matrix.containerappname }}
+          containerAppEnvironment: ${{ env.CONTAINER_APP_ENVIRONMENT_NAME }}
+          resourceGroup: ${{ env.RESOURCE_GROUP }}
