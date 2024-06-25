@@ -35,7 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{1747
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{F6D253E4-9E9A-4EF9-90FB-AFBD19E9CC4D}"
 	ProjectSection(SolutionItems) = preProject
-		docker-publish.yml = docker-publish.yml
+		.github\workflows\docker-deploy.yml = .github\workflows\docker-deploy.yml
 	EndProjectSection
 EndProject
 Global
