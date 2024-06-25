@@ -12,36 +12,38 @@ env:
 jobs:
   DeployContainerApp:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        include:
-          - containerappname: apigatewaywithocelot-container-app
-            dockerhub_image: jackdelaguilavilla03/apigatewaywithocelot:latest
-          - containerappname: apigatewaywithyarp-container-app
-            dockerhub_image: jackdelaguilavilla03/apigatewaywithyarp:latest
-          - containerappname: conferencemanagerservice-container-app
-            dockerhub_image: jackdelaguilavilla03/conferencemanagerservice:latest
-          - containerappname: feedmanagerservice-container-app
-            dockerhub_image: jackdelaguilavilla03/feedmanagerservice:latest
-          - containerappname: paymentmanagerservice-container-app
-            dockerhub_image: jackdelaguilavilla03/paymentmanagerservice:latest
-          - containerappname: usermanagerservice-container-app
-            dockerhub_image: jackdelaguilavilla03/usermanagerservice:latest
-
     steps:
       - name: Azure login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.managedEnv2024_SPN }}
 
-      - name: Deploy Container App
-        uses: azure/container-apps-deploy-action@v1
-        with:
-          acrName: ${{ env.CONTAINER_REGISTRY_NAME }}
-          acrUsername: ${{ secrets.registry20240625002039_USERNAME_630A }}
-          acrPassword: ${{ secrets.registry20240625002039_PASSWORD_630A }}
-          imageToDeploy: ${{ matrix.dockerhub_image }}
-          containerAppName: ${{ matrix.containerappname }}
-          containerAppEnvironment: ${{ env.CONTAINER_APP_ENVIRONMENT_NAME }}
-          resourceGroup: ${{ env.RESOURCE_GROUP }}
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Configure Docker
+        run: |
+          # Configurar Docker para usar el servidor de registro de contenedores de Azure
+          az acr login --name $CONTAINER_REGISTRY_NAME
+
+          # Configurar Docker para utilizar las credenciales de Azure
+          az configure --defaults acr=$CONTAINER_REGISTRY_NAME
+
+      - name: Deploy with Docker Stack
+        run: |
+          # Verificar si el nodo actual ya está en un clúster Swarm
+          docker node ls || true
+
+          # Unir este nodo al clúster Swarm si no lo está ya
+          docker swarm join --token SWMTKN-1-5ryy0f3029cfzlpalg0csw3ky8h30sh9w4bd4qoqdzz94amehp-92v617moeglexq1rp2j8ca3yb 192.168.65.3:2377 || true
+
+          # Desplegar con Docker Stack en Docker Swarm
+          docker stack deploy --compose-file docker-stack.yml your-stack-name  # Reemplaza 'your-stack-name' por el nombre deseado
+
+          # Opcional: Esperar a que el despliegue esté completo (esto es un ejemplo básico)
+          sleep 60  # Espera 1 minuto (ajusta según la complejidad de tu despliegue)
+
+      - name: Verify deployment
+        run: |
+          # Aquí puedes agregar comandos para verificar que tu despliegue haya sido exitoso
+          # Por ejemplo, puedes ejecutar comandos curl o realizar pruebas de integración
