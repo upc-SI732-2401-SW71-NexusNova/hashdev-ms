@@ -21,13 +21,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Deploy with Docker Stack
+      - name: Configure Docker
         run: |
           # Configurar Docker para usar el servidor de registro de contenedores de Azure
           az acr login --name $CONTAINER_REGISTRY_NAME
 
           # Configurar Docker para utilizar las credenciales de Azure
           az configure --defaults acr=$CONTAINER_REGISTRY_NAME
+
+      - name: Deploy with Docker Stack
+        run: |
+          # Verificar si el nodo actual ya está en un clúster Swarm
+          docker node ls || true
+
+          # Unir este nodo al clúster Swarm si no lo está ya
+          docker swarm join --token SWMTKN-1-5ryy0f3029cfzlpalg0csw3ky8h30sh9w4bd4qoqdzz94amehp-92v617moeglexq1rp2j8ca3yb 192.168.65.3:2377 || true
 
           # Desplegar con Docker Stack en Docker Swarm
           docker stack deploy --compose-file docker-stack.yml your-stack-name  # Reemplaza 'your-stack-name' por el nombre deseado
@@ -39,4 +47,3 @@ jobs:
         run: |
           # Aquí puedes agregar comandos para verificar que tu despliegue haya sido exitoso
           # Por ejemplo, puedes ejecutar comandos curl o realizar pruebas de integración
-
