@@ -1,0 +1,27 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for service changes
+        run: echo "Check for changes in services"
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    needs: check-changes
+    if: github.event_name == 'push' && github.event_name == 'pull_request' && steps.check-changes.outputs.changed_services == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build and Push Docker Images
+        uses: ./docker-build-and-push.yml
