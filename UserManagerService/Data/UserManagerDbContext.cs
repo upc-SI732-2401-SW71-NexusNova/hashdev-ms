@@ -14,8 +14,11 @@ namespace UserManagerService.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<Profile>().ToTable("Profiles");
+            modelBuilder.Entity<User>()
+                .ToTable("Users")
+                .HasOne(u => u.Profile)
+                .WithOne(p => p.User)
+                .HasForeignKey<Profile>(p => p.UserId);
         }
     }
 }
