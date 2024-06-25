@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apigatewaywithocelot-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apigatewaywithocelot
+  template:
+    metadata:
+      labels:
+        app: apigatewaywithocelot
+    spec:
+      containers:
+        - name: apigatewaywithocelot
+          image: jackdelaguilavilla03/apigatewaywithocelot
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: ASPNETCORE_HTTP_PORTS
+              value: "5000"
+            - name: ASPNETCORE_HTTPS_PORTS
+              value: "5001"
+---

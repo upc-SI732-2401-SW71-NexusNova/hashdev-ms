@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadbalancer-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadbalancer
+  template:
+    metadata:
+      labels:
+        app: loadbalancer
+    spec:
+      containers:
+        - name: loadbalancer
+          image: jackdelaguilavilla03/loadbalancer
+          ports:
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 443
+              protocol: TCP
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              readOnly: true
+            - name: nginx-proxy-config
+              mountPath: /etc/nginx/proxy.conf
+              subPath: proxy.conf
+              readOnly: true
+            - name: ssl-certs
+              mountPath: /etc/ssl/certs/localhost.crt
+              subPath: localhost.crt
+              readOnly: true
+            - name: ssl-keys
+              mountPath: /etc/ssl/certs/localhost.key
+              subPath: localhost.key
+              readOnly: true
+            - name: nginx-logs
+              mountPath: /var/log/nginx
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-configmap
+        - name: nginx-proxy-config
+          configMap:
+            name: nginx-proxy-configmap
+        - name: ssl-certs
+          secret:
+            secretName: ssl-certs-secret
+        - name: ssl-keys
+          secret:
+            secretName: ssl-keys-secret
+        - name: nginx-logs
+          emptyDir: {}

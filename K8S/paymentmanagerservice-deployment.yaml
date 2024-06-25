@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentmanagerservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paymentmanagerservice
+  template:
+    metadata:
+      labels:
+        app: paymentmanagerservice
+    spec:
+      containers:
+        - name: paymentmanagerservice
+          image: jackdelaguilavilla03/paymentmanagerservice
+          ports:
+            - containerPort: 8030
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: ASPNETCORE_HTTP_PORTS
+              value: "8030"
+            - name: ASPNETCORE_HTTPS_PORTS
+              value: "8031"

@@ -16,5 +16,22 @@
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
     <None Include="docker-stack.yml" />
+    <None Include="k8s\apigatewaywithocelot-deployment.yaml" />
+    <None Include="k8s\apigatewaywithocelot-service.yaml" />
+    <None Include="k8s\apigatewaywithyarp-deployment.yaml" />
+    <None Include="k8s\apigatewaywithyarp-service.yaml" />
+    <None Include="k8s\conferencemanagerservice-deployment.yaml" />
+    <None Include="k8s\conferencemanagerservice-service.yaml" />
+    <None Include="k8s\feedmanagerservice-deployment.yaml" />
+    <None Include="k8s\feedmanagerservice-service.yaml" />
+    <None Include="k8s\loadbalancer-deployment.yaml" />
+    <None Include="k8s\loadbalancer-service.yaml" />
+    <None Include="k8s\paymentmanagerservice-deployment.yaml" />
+    <None Include="k8s\paymentmanagerservice-service.yaml" />
+    <None Include="k8s\usermanagerservice-deployment.yaml" />
+    <None Include="k8s\usermanagerservice-service.yaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="K8S\" />
   </ItemGroup>
 </Project>
