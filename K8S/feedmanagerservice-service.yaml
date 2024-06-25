@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: feedmanagerservice-service
+spec:
+  selector:
+    app: feedmanagerservice
+  ports:
+    - protocol: TCP
+      port: 8020
+      targetPort: 8020
