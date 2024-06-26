@@ -1,0 +1,106 @@
+version: '3.4'
+
+networks:
+  proxybackend:
+    driver: bridge
+
+services:
+  loadbalancer:
+    networks:
+      - proxybackend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./LoadBalancer/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./LoadBalancer/proxy.conf:/etc/nginx/proxy.conf:ro
+      - ./LoadBalancer/ssl/localhost.crt:/etc/ssl/certs/localhost.crt:ro
+      - ./LoadBalancer/ssl/localhost.key:/etc/ssl/certs/localhost.key:ro
+      - ./LoadBalancer/logs/:/var/log/nginx/
+    depends_on:
+      - apigatewaywithocelot
+      - apigatewaywithyarp
+
+  apigatewaywithocelot:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5000
+      - ASPNETCORE_HTTPS_PORTS=5001
+    networks:
+      - proxybackend
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    volumes:
+      - ~/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/home/app/.aspnet/https:ro
+
+  apigatewaywithyarp:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=6000
+      - ASPNETCORE_HTTPS_PORTS=6001
+    networks:
+      - proxybackend
+    ports:
+      - "6000:6000"
+      - "6001:6001"
+    volumes:
+      - ~/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/home/app/.aspnet/https:ro
+
+  conferencemanagerservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8010
+      - ASPNETCORE_HTTPS_PORTS=8011
+    networks:
+      - proxybackend
+    ports:
+      - "8010:8010"
+      - "8011:8011"
+    volumes:
+      - ~/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/home/app/.aspnet/https:ro
+
+  feedmanagerservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8020
+      - ASPNETCORE_HTTPS_PORTS=8021
+    networks:
+      - proxybackend
+    ports:
+      - "8020:8020"
+      - "8021:8021"
+    volumes:
+      - ~/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/home/app/.aspnet/https:ro
+
+  paymentmanagerservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8030
+      - ASPNETCORE_HTTPS_PORTS=8031
+    networks:
+      - proxybackend
+    ports:
+      - "8030:8030"
+      - "8031:8031"
+    volumes:
+      - ~/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/home/app/.aspnet/https:ro
+
+  usermanagerservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8040
+      - ASPNETCORE_HTTPS_PORTS=8041
+    networks:
+      - proxybackend
+    ports:
+      - "8040:8040"
+      - "8041:8041"
+    volumes:
+      - ~/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/home/app/.aspnet/https:ro

@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{25
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{72DFFC59-C0FE-4FFB-8672-46EFCE2C1952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApigatewayWithOcelot", "ApigatewayWithOcelot\ApigatewayWithOcelot.csproj", "{291398F3-A46B-4040-B16A-84BA27A18ED6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApigatewayWithOcelot", "ApigatewayWithOcelot\ApigatewayWithOcelot.csproj", "{291398F3-A46B-4040-B16A-84BA27A18ED6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApigatewayWithYarp", "ApigatewayWithYarp\ApigatewayWithYarp.csproj", "{D099BBAF-2698-48EC-BCCC-52DEA68F608C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApigatewayWithYarp", "ApigatewayWithYarp\ApigatewayWithYarp.csproj", "{D099BBAF-2698-48EC-BCCC-52DEA68F608C}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7F2523A6-3FCB-49D8-80BF-F39D31581EFD}"
 EndProject
@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoadBalancer", "LoadBalance
 		LoadBalancer\nginx.conf = LoadBalancer\nginx.conf
 		LoadBalancer\proxy.conf = LoadBalancer\proxy.conf
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{F49D1401-3E84-4A80-9BCE-0A62AAFE7AF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
