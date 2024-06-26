@@ -6,10 +6,6 @@ WORKDIR /app
 EXPOSE 8040
 EXPOSE 8041
 
-# Setting environment variables
-ENV ASPNETCORE_HTTPS_PORTS=8041
-ENV ASPNETCORE_HTTP_PORTS=8040
-
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
