@@ -36,12 +36,12 @@ jobs:
       with:
         creds: ${{ secrets.hashdevcluster_SPN }}
     - name: Set AKS context
-      uses: azure/aks-set-context@1
+      uses: azure/aks-set-context@v3
       with:
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     - name: Deploy manifests to AKS
-      uses: azure/k8s-deploy@1
+      uses: Azure/k8s-deploy@v4.9
       with:
         action: deploy
         images: ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }}/apigatewaywithocelot:${{ github.sha }}
@@ -72,12 +72,12 @@ jobs:
       with:
         creds: ${{ secrets.hashdevcluster_SPN }}
     - name: Set AKS context
-      uses: azure/aks-set-context@1
+      uses: azure/aks-set-context@v3
       with:
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     - name: Deploy manifests to AKS
-      uses: azure/k8s-deploy@1
+      uses: Azure/k8s-deploy@v4.9
       with:
         action: deploy
         images: ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }}/apigatewaywithyarp:${{ github.sha }}
@@ -108,12 +108,12 @@ jobs:
       with:
         creds: ${{ secrets.hashdevcluster_SPN }}
     - name: Set AKS context
-      uses: azure/aks-set-context@1
+      uses: azure/aks-set-context@v3
       with:
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     - name: Deploy manifests to AKS
-      uses: azure/k8s-deploy@1
+      uses: Azure/k8s-deploy@v4.9
       with:
         action: deploy
         images: ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }}/conferencemanagerservice:${{ github.sha }}
@@ -144,12 +144,12 @@ jobs:
       with:
         creds: ${{ secrets.hashdevcluster_SPN }}
     - name: Set AKS context
-      uses: azure/aks-set-context@1
+      uses: azure/aks-set-context@v3
       with:
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     - name: Deploy manifests to AKS
-      uses: azure/k8s-deploy@1
+      uses: Azure/k8s-deploy@v4.9
       with:
         action: deploy
         images: ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }}/feedmanagerservice:${{ github.sha }}
@@ -180,12 +180,12 @@ jobs:
       with:
         creds: ${{ secrets.hashdevcluster_SPN }}
     - name: Set AKS context
-      uses: azure/aks-set-context@1
+      uses: azure/aks-set-context@v3
       with:
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     - name: Deploy manifests to AKS
-      uses: azure/k8s-deploy@1
+      uses: Azure/k8s-deploy@v4.9
       with:
         action: deploy
         images: ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }}/paymentmanagerservice:${{ github.sha }}
@@ -216,12 +216,12 @@ jobs:
       with:
         creds: ${{ secrets.hashdevcluster_SPN }}
     - name: Set AKS context
-      uses: azure/aks-set-context@1
+      uses: azure/aks-set-context@v3
       with:
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     - name: Deploy manifests to AKS
-      uses: azure/k8s-deploy@1
+      uses: Azure/k8s-deploy@v4.9
       with:
         action: deploy
         images: ${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }}/usermanagerservice:${{ github.sha }}
