@@ -24,7 +24,7 @@ namespace ConferenceManagerService.Data
             {
                 Console.WriteLine("--> Seeding data...");
                 context.Conferences.AddRange(
-                    // Id , Name , Image, description, Price, Date, Time, Location, UserId
+                    // Id , Name , Image, Description, Price, Date, Time, Location, UserId
                     new Conference() { Id = 1, Name = "Dotnet Conference", Image = "https://cdn.plainconcepts.com/wp-content/uploads/2023/05/DotNet-2023.jpg", Description = "Event most famous of .NET developers in the world", Price = "20", Date = "08-10-2024", Time = "08:00", Location = "Virtual", UserId = 1 },
                     new Conference() { Id = 2, Name = "Java Conference", Image = "https://cdn.plainconcepts.com/wp-content/uploads/2023/05/Java-2023.jpg", Description = "Annual conference for Java developers", Price = "15", Date = "10-15-2024", Time = "09:00", Location = "Virtual", UserId = 2 },
                     new Conference() { Id = 3, Name = "Python Conference", Image = "https://cdn.plainconcepts.com/wp-content/uploads/2023/05/Python-2023.jpg", Description = "Gathering of Python enthusiasts", Price = "10", Date = "12-05-2024", Time = "10:30", Location = "Virtual", UserId = 3 },
