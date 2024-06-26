@@ -19,21 +19,32 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
+
+    # Restore dependencies for each project
+    - name: Restore dependencies for ConferenceManagerService
+      run: dotnet restore ConferenceManagerService/ConferenceManagerService.csproj
+
+    - name: Restore dependencies for PaymentManagerService
+      run: dotnet restore PaymentManagerService/PaymentManagerService.csproj
+
+    - name: Restore dependencies for UserManagerService
+      run: dotnet restore UserManagerService/UserManagerService.csproj
 
     # Build and test each project
     - name: Build and Test ConferenceManagerService
       run: dotnet build --configuration Release --project ConferenceManagerService.Tests/ConferenceManagerService.Tests.csproj
+
     - name: Test ConferenceManagerService
       run: dotnet test --no-build --verbosity normal ConferenceManagerService.Tests/ConferenceManagerService.Tests.csproj
 
     - name: Build and Test PaymentManagerService
       run: dotnet build --configuration Release --project PaymentManagerService.Tests/PaymentManagerService.Tests.csproj
+
     - name: Test PaymentManagerService
       run: dotnet test --no-build --verbosity normal PaymentManagerService.Tests/PaymentManagerService.Tests.csproj
 
     - name: Build and Test UserManagerService
       run: dotnet build --configuration Release --project UserManagerService.Test/UserManagerService.Tests.csproj
+
     - name: Test UserManagerService
       run: dotnet test --no-build --verbosity normal UserManagerService.Test/UserManagerService.Tests.csproj
