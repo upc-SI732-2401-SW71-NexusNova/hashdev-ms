@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feedmanagerservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: feedmanagerservice
+  template:
+    metadata:
+      labels:
+        app: feedmanagerservice
+    spec:
+      containers:
+        - name: feedmanagerservice
+          image: jackdelaguilavilla03/feedmanagerservice
+          ports:
+            - containerPort: 8020
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: ASPNETCORE_HTTP_PORTS
+              value: "8020"
+            - name: ASPNETCORE_HTTPS_PORTS
+              value: "8021"
+---

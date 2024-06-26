@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApigatewayWithYarp", "Apiga
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7F2523A6-3FCB-49D8-80BF-F39D31581EFD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{2C2EB3CB-6074-468D-91CB-C83B0391BA1F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orchestation", "Orchestation", "{2C2EB3CB-6074-468D-91CB-C83B0391BA1F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoadBalancer", "LoadBalancer", "{E3088FA2-7CBC-4812-9F13-B81FB44BFD78}"
 	ProjectSection(SolutionItems) = preProject

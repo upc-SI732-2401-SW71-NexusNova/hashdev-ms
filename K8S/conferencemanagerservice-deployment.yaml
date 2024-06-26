@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conferencemanagerservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conferencemanagerservice
+  template:
+    metadata:
+      labels:
+        app: conferencemanagerservice
+    spec:
+      containers:
+        - name: conferencemanagerservice
+          image: jackdelaguilavilla03/conferencemanagerservice
+          ports:
+            - containerPort: 8010
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: ASPNETCORE_HTTP_PORTS
+              value: "8010"
+            - name: ASPNETCORE_HTTPS_PORTS
+              value: "8011"
+---

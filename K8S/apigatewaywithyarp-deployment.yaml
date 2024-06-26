@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apigatewaywithyarp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apigatewaywithyarp
+  template:
+    metadata:
+      labels:
+        app: apigatewaywithyarp
+    spec:
+      containers:
+        - name: apigatewaywithyarp
+          image: jackdelaguilavilla03/apigatewaywithyarp
+          ports:
+            - containerPort: 6000
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: ASPNETCORE_HTTP_PORTS
+              value: "6000"
+            - name: ASPNETCORE_HTTPS_PORTS
+              value: "6001"
+---

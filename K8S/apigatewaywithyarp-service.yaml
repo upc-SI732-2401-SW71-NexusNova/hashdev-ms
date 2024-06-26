@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apigatewaywithyarp-service
+spec:
+  selector:
+    app: apigatewaywithyarp
+  ports:
+    - protocol: TCP
+      port: 6000
+      targetPort: 6000
