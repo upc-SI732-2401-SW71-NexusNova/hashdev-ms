@@ -14,5 +14,6 @@ namespace UserManagerService.Data.Repositories
         // Access Control
         void Login(string email, string password);
         User Register(User user);
+        object GetUserByEmail(string email);
     }
 }

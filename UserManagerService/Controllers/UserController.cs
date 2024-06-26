@@ -24,9 +24,24 @@ namespace UserManagerService.Controllers
         public ActionResult<UserReadDto> Login([FromQuery] string email, [FromQuery] string password)
         {
             Console.WriteLine("--> Logging in user...");
-            _userRepository.Login(email, password);
-            return Ok();
+
+            try
+            {
+                _userRepository.Login(email, password);
+            }
+            catch (ArgumentNullException)
+            {
+                return NotFound();
+            }
+
+            var user = _userRepository.GetUserByEmail(email);
+
+            var userReadDto = _mapper.Map<UserReadDto>(user);
+            return Ok(userReadDto);
         }
+
+
+
 
         [HttpPost("register")]
         public ActionResult<UserReadDto> Register(UserCreateDto userCreateDto)

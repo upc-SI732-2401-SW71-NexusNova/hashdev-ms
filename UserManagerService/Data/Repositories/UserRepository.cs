@@ -83,5 +83,15 @@ namespace UserManagerService.Data.Repositories
             userToUpdate.Email = user.Email;
             userToUpdate.Password = user.Password;
         }
+
+        public object GetUserByEmail(string email)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            if (email == null)
+            {
+                throw new ArgumentNullException(nameof(email));
+            }
+            return user;
+        }
     }
 }
