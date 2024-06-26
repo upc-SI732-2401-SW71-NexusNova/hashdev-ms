@@ -8,14 +8,15 @@ namespace ConferenceManagerService.Data.Repositories
 
         public ConferenceRepository(ConferenceManagerDbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
         public void CreateConference(Conference conference)
         {
             if (conference == null)
             {
-                throw new System.ArgumentNullException(nameof(conference));
+                throw new ArgumentNullException(nameof(conference));
             }
+
             _context.Conferences.Add(conference);
         }
 

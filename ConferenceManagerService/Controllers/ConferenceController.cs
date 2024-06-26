@@ -31,13 +31,31 @@ namespace ConferenceManagerService.Controllers
         public ActionResult GetConferenceById(int id)
         {
             var conference = _repository.GetConferenceById(id);
+
+            if (conference == null)
+            {
+                return NotFound(); // Return NotFound if conference is not found
+            }
+
             return Ok(_mapper.Map<ConferenceReadDto>(conference));
         }
+
 
         [HttpPost]
         public ActionResult CreateConference(ConferenceCreateDto conferenceCreateDto)
         {
+            if (conferenceCreateDto == null)
+            {
+                return BadRequest("ConferenceCreateDto cannot be null.");
+            }
+
             var conferenceModel = _mapper.Map<Conference>(conferenceCreateDto);
+
+            if (conferenceModel == null)
+            {
+                return BadRequest("Failed to map ConferenceCreateDto to Conference.");
+            }
+
             _repository.CreateConference(conferenceModel);
             _repository.SaveChanges();
 
@@ -45,10 +63,18 @@ namespace ConferenceManagerService.Controllers
             return CreatedAtRoute(nameof(GetConferenceById), new { Id = conferenceReadDto.Id }, conferenceReadDto);
         }
 
+
+
         [HttpDelete("{id}")]
         public ActionResult DeleteConference(int id)
         {
             var conference = _repository.GetConferenceById(id);
+
+            if (conference == null)
+            {
+                return NotFound();
+            }
+
             _repository.DeleteConference(conference);
             _repository.SaveChanges();
 

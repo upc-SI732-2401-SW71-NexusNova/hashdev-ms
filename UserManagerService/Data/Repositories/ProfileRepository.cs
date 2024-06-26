@@ -1,4 +1,7 @@
 ﻿using UserManagerService.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace UserManagerService.Data.Repositories
 {
@@ -10,6 +13,7 @@ namespace UserManagerService.Data.Repositories
         {
             _context = context;
         }
+
         public Profile CreateProfile(Profile profile)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == profile.UserId);
@@ -17,8 +21,11 @@ namespace UserManagerService.Data.Repositories
             {
                 throw new ArgumentNullException(nameof(user));
             }
+
             Console.WriteLine("User found");
             _context.Profiles.Add(profile);
+            _context.SaveChanges();
+
             return profile;
         }
 
@@ -28,6 +35,7 @@ namespace UserManagerService.Data.Repositories
             {
                 throw new ArgumentNullException(nameof(profile));
             }
+
             Console.WriteLine("Profile Deleted");
             _context.Profiles.Remove(profile);
         }
