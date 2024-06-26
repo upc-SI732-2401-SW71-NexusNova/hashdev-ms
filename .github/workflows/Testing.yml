@@ -35,16 +35,16 @@ jobs:
       run: dotnet build --configuration Release ConferenceManagerService.Tests/ConferenceManagerService.Tests.csproj
 
     - name: Test ConferenceManagerService
-      run: dotnet test --no-build --verbosity normal ConferenceManagerService.Tests/ConferenceManagerService.Tests.csproj
+      run: dotnet test --no-build --verbosity normal --configuration Release ConferenceManagerService.Tests/ConferenceManagerService.Tests.csproj
 
     - name: Build and Test PaymentManagerService
       run: dotnet build --configuration Release PaymentManagerService.Tests/PaymentManagerService.Tests.csproj
 
     - name: Test PaymentManagerService
-      run: dotnet test --no-build --verbosity normal PaymentManagerService.Tests/PaymentManagerService.Tests.csproj
+      run: dotnet test --no-build --verbosity normal --configuration Release PaymentManagerService.Tests/PaymentManagerService.Tests.csproj
 
     - name: Build and Test UserManagerService
       run: dotnet build --configuration Release UserManagerService.Test/UserManagerService.Tests.csproj
 
     - name: Test UserManagerService
-      run: dotnet test --no-build --verbosity normal UserManagerService.Test/UserManagerService.Tests.csproj
+      run: dotnet test --no-build --verbosity normal --configuration Release UserManagerService.Test/UserManagerService.Tests.csproj
