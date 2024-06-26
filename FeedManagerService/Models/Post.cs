@@ -16,6 +16,5 @@ namespace FeedManagerService.Models
         public int UserId { get; set; }
 
         public IList<Comment> Comments { get; set; }
-        public User User { get; set; }
     }
 }
