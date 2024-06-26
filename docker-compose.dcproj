@@ -15,6 +15,7 @@
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="docker-stack.linux.yml" />
     <None Include="docker-stack.yml" />
     <None Include="k8s\apigatewaywithocelot-deployment.yaml" />
     <None Include="k8s\apigatewaywithocelot-service.yaml" />
