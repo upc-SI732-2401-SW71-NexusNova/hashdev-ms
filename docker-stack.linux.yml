@@ -1,0 +1,153 @@
+version: '3.8'
+
+networks:
+  proxybackend:
+    driver: overlay
+
+services:
+  loadbalancer:
+    image: jackdelaguilavilla03/loadbalancer:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./LoadBalancer/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./LoadBalancer/proxy.conf:/etc/nginx/proxy.conf:ro
+      - ./LoadBalancer/ssl/localhost.crt:/etc/ssl/certs/localhost.crt:ro
+      - ./LoadBalancer/ssl/localhost.key:/etc/ssl/certs/localhost.key:ro
+      - ./LoadBalancer/logs/:/var/log/nginx/
+    networks:
+      - proxybackend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  apigatewaywithocelot:
+    image: jackdelaguilavilla03/apigatewaywithocelot:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5000
+      - ASPNETCORE_HTTPS_PORTS=5001
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    volumes:
+      - $HOME/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - $HOME/.aspnet/https:/home/app/.aspnet/https:ro
+    networks:
+      - proxybackend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+  apigatewaywithyarp:
+    image: jackdelaguilavilla03/apigatewaywithyarp:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=6000
+      - ASPNETCORE_HTTPS_PORTS=6001
+    ports:
+      - "6000:6000"
+      - "6001:6001"
+    volumes:
+      - $HOME/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - $HOME/.aspnet/https:/home/app/.aspnet/https:ro
+    networks:
+      - proxybackend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+  conferencemanagerservice:
+    image: jackdelaguilavilla03/conferencemanagerservice:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8010
+      - ASPNETCORE_HTTPS_PORTS=8011
+    ports:
+      - "8010:8010"
+      - "8011:8011"
+    volumes:
+      - $HOME/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - $HOME/.aspnet/https:/home/app/.aspnet/https:ro
+    networks:
+      - proxybackend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  feedmanagerservice:
+    image: jackdelaguilavilla03/feedmanagerservice:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8020
+      - ASPNETCORE_HTTPS_PORTS=8021
+    ports:
+      - "8020:8020"
+      - "8021:8021"
+    volumes:
+      - $HOME/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - $HOME/.aspnet/https:/home/app/.aspnet/https:ro
+    networks:
+      - proxybackend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  paymentmanagerservice:
+    image: jackdelaguilavilla03/paymentmanagerservice:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8030
+      - ASPNETCORE_HTTPS_PORTS=8031
+    ports:
+      - "8030:8030"
+      - "8031:8031"
+    volumes:
+      - $HOME/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - $HOME/.aspnet/https:/home/app/.aspnet/https:ro
+    networks:
+      - proxybackend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  usermanagerservice:
+    image: jackdelaguilavilla03/usermanagerservice:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8040
+      - ASPNETCORE_HTTPS_PORTS=8041
+    ports:
+      - "8040:8040"
+      - "8041:8041"
+    volumes:
+      - $HOME/.microsoft/usersecrets:/home/app/.microsoft/usersecrets:ro
+      - $HOME/.aspnet/https:/home/app/.aspnet/https:ro
+    networks:
+      - proxybackend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 120s
